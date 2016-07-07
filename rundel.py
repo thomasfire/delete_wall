@@ -43,7 +43,7 @@ def deletewall(vk,userid):
 
 
 def main(vk,userid):
-    #getall(vk,userid)
+    getall(vk,userid)
     deletewall(vk,userid)
 
 
