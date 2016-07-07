@@ -5,6 +5,7 @@ import vk_api
 import re
 import fcrypto
 import getpass
+import sys
 
 
 def getall(vk,userid):
@@ -21,9 +22,12 @@ def getall(vk,userid):
             if not currposts['items']:
                 break
             count+=1
-            for x in currposts['items']:
-                if 'copy_history' in x.keys() and str(x['copy_history'][0]['from_id']) not in allowed:
-                    listtodel.append(str(x['id']))
+            if len(sys.argv)>1 and sys.argv[1]=='-all':
+                listtodel.append(str(x['id']))
+            else:
+                for x in currposts['items']:
+                    if 'copy_history' in x.keys() and str(x['copy_history'][0]['from_id']) not in allowed:
+                        listtodel.append(str(x['id']))
         except Exception as e:
             print("Smth goes wrong at getting wall: ",e)
 
